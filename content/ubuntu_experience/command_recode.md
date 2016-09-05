@@ -12,6 +12,7 @@
 * [安裝 Vim](#安裝-vim)
 * [安裝 tmux](#安裝-tmux)
 * [安裝虛擬機工具](#安裝虛擬機工具)
+* [安裝 nodejs](#安裝-nodejs)
 
 
 
@@ -365,5 +366,137 @@ The following NEW packages will be installed:
 Need to get 1790 kB of archives.
 After this operation, 14.3 MB of additional disk space will be used.
 Do you want to continue? [Y/n]
+```
+
+
+
+## 安裝 nodejs
+
+
+```
+$ sudo apt install nodejs npm
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+The following packages were automatically installed and are no longer required:
+  libpango1.0-0 libpangox-1.0-0
+Use 'sudo apt autoremove' to remove them.
+The following additional packages will be installed:
+  gyp javascript-common libjs-inherits libjs-jquery libjs-node-uuid libjs-underscore libssl-dev libssl-doc libuv1 libuv1-dev node-abbrev node-ansi node-ansi-color-table
+  node-archy node-async node-block-stream node-combined-stream node-cookie-jar node-delayed-stream node-forever-agent node-form-data node-fstream node-fstream-ignore
+  node-github-url-from-git node-glob node-graceful-fs node-gyp node-inherits node-ini node-json-stringify-safe node-lockfile node-lru-cache node-mime node-minimatch
+  node-mkdirp node-mute-stream node-node-uuid node-nopt node-normalize-package-data node-npmlog node-once node-osenv node-qs node-read node-read-package-json node-request
+  node-retry node-rimraf node-semver node-sha node-sigmund node-slide node-tar node-tunnel-agent node-underscore node-which nodejs-dev python-pkg-resources zlib1g-dev
+Suggested packages:
+  apache2 | lighttpd | httpd node-hawk node-aws-sign node-oauth-sign node-http-signature debhelper python-setuptools
+The following NEW packages will be installed:
+  gyp javascript-common libjs-inherits libjs-jquery libjs-node-uuid libjs-underscore libssl-dev libssl-doc libuv1 libuv1-dev node-abbrev node-ansi node-ansi-color-table
+  node-archy node-async node-block-stream node-combined-stream node-cookie-jar node-delayed-stream node-forever-agent node-form-data node-fstream node-fstream-ignore
+  node-github-url-from-git node-glob node-graceful-fs node-gyp node-inherits node-ini node-json-stringify-safe node-lockfile node-lru-cache node-mime node-minimatch
+  node-mkdirp node-mute-stream node-node-uuid node-nopt node-normalize-package-data node-npmlog node-once node-osenv node-qs node-read node-read-package-json node-request
+  node-retry node-rimraf node-semver node-sha node-sigmund node-slide node-tar node-tunnel-agent node-underscore node-which nodejs nodejs-dev npm python-pkg-resources
+  zlib1g-dev
+0 upgraded, 61 newly installed, 0 to remove and 0 not upgraded.
+Need to get 8722 kB of archives.
+After this operation, 41.5 MB of additional disk space will be used.
+Do you want to continue? [Y/n]
+```
+
+
+版本過舊
+
+
+```
+$ nodejs -v
+v4.2.6
+```
+
+
+參考教學安裝最新版
+
+
+```
+$ curl -sl https://deb.nodesource.com/setup_6.x | sudo -E bash -
+
+## Installing the NodeSource Node.js v6.x repo...
+
+
+## Populating apt-get cache...
+
++ apt-get update
+Hit:1 http://tw.archive.ubuntu.com/ubuntu xenial InRelease
+Hit:2 http://tw.archive.ubuntu.com/ubuntu xenial-updates InRelease
+Hit:3 http://tw.archive.ubuntu.com/ubuntu xenial-backports InRelease
+Hit:4 http://security.ubuntu.com/ubuntu xenial-security InRelease
+Reading package lists... Done
+
+## Confirming "xenial" is supported...
+
++ curl -sLf -o /dev/null 'https://deb.nodesource.com/node_6.x/dists/xenial/Release'
+
+## Adding the NodeSource signing key to your keyring...
+
++ curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -
+OK
+
+## Creating apt sources list file for the NodeSource Node.js v6.x repo...
+
++ echo 'deb https://deb.nodesource.com/node_6.x xenial main' > /etc/apt/sources.list.d/nodesource.list
++ echo 'deb-src https://deb.nodesource.com/node_6.x xenial main' >> /etc/apt/sources.list.d/nodesource.list
+
+## Running `apt-get update` for you...
+
++ apt-get update
+Hit:1 http://tw.archive.ubuntu.com/ubuntu xenial InRelease
+Hit:2 http://tw.archive.ubuntu.com/ubuntu xenial-updates InRelease
+Hit:3 http://tw.archive.ubuntu.com/ubuntu xenial-backports InRelease
+Hit:4 http://security.ubuntu.com/ubuntu xenial-security InRelease
+Get:5 https://deb.nodesource.com/node_6.x xenial InRelease [3914 B]
+Get:6 https://deb.nodesource.com/node_6.x xenial/main Sources [762 B]
+Get:7 https://deb.nodesource.com/node_6.x xenial/main amd64 Packages [968 B]
+Get:8 https://deb.nodesource.com/node_6.x xenial/main i386 Packages [964 B]
+Fetched 6608 B in 1s (3596 B/s)
+Reading package lists... Done
+
+## Run `apt-get install nodejs` (as root) to install Node.js v6.x and npm
+```
+
+
+```
+$ sudo apt install nodejs
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+The following packages were automatically installed and are no longer required:
+  gyp javascript-common libjs-inherits libjs-jquery libjs-node-uuid libjs-underscore libpango1.0-0
+  libpangox-1.0-0 libssl-dev libssl-doc libuv1 libuv1-dev node-abbrev node-ansi node-ansi-color-table
+  node-archy node-async node-block-stream node-combined-stream node-cookie-jar node-delayed-stream
+  node-forever-agent node-form-data node-fstream node-fstream-ignore node-github-url-from-git node-glob
+	node-graceful-fs node-gyp node-inherits node-ini node-json-stringify-safe node-lockfile node-lru-cache
+  node-mime node-minimatch node-mkdirp node-mute-stream node-node-uuid node-nopt node-normalize-package-data
+  node-npmlog node-once node-osenv node-qs node-read node-read-package-json node-request
+  node-retry node-rimraf node-semver node-sha node-sigmund node-slide node-tar node-tunnel-agent
+  node-underscore node-which python-pkg-resources zlib1g-dev
+Use 'sudo apt autoremove' to remove them.
+The following additional packages will be installed:
+  rlwrap
+The following packages will be REMOVED:
+  nodejs-dev npm
+The following NEW packages will be installed:
+  rlwrap
+The following packages will be upgraded:
+  nodejs
+1 upgraded, 1 newly installed, 2 to remove and 0 not upgraded.
+Need to get 10.2 MB of archives.
+After this operation, 25.4 MB of additional disk space will be used.
+Do you want to continue? [Y/n]
+```
+
+
+```
+$ node -v
+v6.5.0
+$ nodejs -v
+v6.5.0
 ```
 
