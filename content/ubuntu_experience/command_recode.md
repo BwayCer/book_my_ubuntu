@@ -9,7 +9,7 @@
 * [安裝 git](#安裝-git)
 * [軟體包更新](#軟體包更新)
 * [安裝 openssh-server](#安裝-openssh-server)
-* [安裝 Vim](#安裝-Vim)
+* [安裝 Vim](#安裝-vim)
 * [安裝 tmux](#安裝-tmux)
 * [安裝虛擬機工具](#安裝虛擬機工具)
 
@@ -283,11 +283,7 @@ Do you want to continue? [Y/n]
 ```
 
 
-
-### 修改設定
-
-
-檔案： /etc/ssh/sshd_config
+修改設定檔： /etc/ssh/sshd_config
 
 
 ```
@@ -296,8 +292,7 @@ PermitRootLogin No # 不允許
 ```
 
 
-
-### 重啟 SSH Server
+重啟 SSH Server
 
 
 ```
