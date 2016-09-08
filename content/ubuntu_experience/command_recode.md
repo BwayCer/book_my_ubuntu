@@ -13,6 +13,8 @@
 * [安裝 tmux](#安裝-tmux)
 * [安裝虛擬機工具](#安裝虛擬機工具)
 * [安裝 nodejs](#安裝-nodejs)
+* [安裝 Heroku 工具](#安裝-Heroku-工具)
+* [開啟共享資料夾功能](#開啟共享資料夾功能)
 
 
 
@@ -498,5 +500,155 @@ $ node -v
 v6.5.0
 $ nodejs -v
 v6.5.0
+```
+
+
+
+## 安裝 Heroku 工具
+
+
+```
+$ wget -O- https://toolbelt.hero
+ku.com/install-ubuntu.sh | sh
+--2016-09-06 19:14:20--  https://toolbelt.heroku.com/install-ubuntu.sh
+Resolving toolbelt.heroku.com (toolbelt.heroku.com)... 50.19.124.218, 54.225.
+160.167, 54.225.165.73
+Connecting to toolbelt.heroku.com (toolbelt.heroku.com)|50.19.124.218|:443...
+ connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 719 [text/plain]
+Saving to: ‘STDOUT’
+
+-                     0%[                 ]       0  --.-KB/s               T
+his script requires superuser access to install apt packages.
+You will be prompted for your password by sudo.
+-                   100%[================>]     719  --.-KB/s    in 0s
+
+2016-09-06 19:14:21 (79.4 MB/s) - written to stdout [719/719]
+
+[sudo] password for bwaycer:
+--2016-09-06 19:14:34--  https://toolbelt.heroku.com/apt/release.key
+Resolving toolbelt.heroku.com (toolbelt.heroku.com)... 54.225.165.73, 50.19.1
+24.218, 54.225.160.167
+Connecting to toolbelt.heroku.com (toolbelt.heroku.com)|54.225.165.73|:443...
+ connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 1737 (1.7K) [application/octet-stream]
+Saving to: ‘STDOUT’
+
+-                   100%[================>]   1.70K  --.-KB/s    in 0s
+
+2016-09-06 19:14:35 (408 MB/s) - written to stdout [1737/1737]
+
+OK
+Hit:1 http://tw.archive.ubuntu.com/ubuntu xenial InRelease
+Get:2 http://tw.archive.ubuntu.com/ubuntu xenial-updates InRelease [95.7 kB]
+Hit:3 http://tw.archive.ubuntu.com/ubuntu xenial-backports InRelease
+Get:4 http://tw.archive.ubuntu.com/ubuntu xenial-updates/universe amd64 Packa
+ges [323 kB]
+Get:5 http://tw.archive.ubuntu.com/ubuntu xenial-updates/universe i386 Packag
+es [320 kB]
+Hit:6 http://security.ubuntu.com/ubuntu xenial-security InRelease
+Ign:7 http://toolbelt.heroku.com/ubuntu ./ InRelease
+Hit:9 https://deb.nodesource.com/node_6.x xenial InRelease
+Get:8 http://toolbelt.heroku.com/ubuntu ./ Release [1609 B]
+Get:10 http://toolbelt.heroku.com/ubuntu ./ Release.gpg [473 B]
+Get:11 http://toolbelt.heroku.com/ubuntu ./ Packages [722 B]
+Fetched 742 kB in 3s (245 kB/s)
+Reading package lists... Done
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+The following packages were automatically installed and are no longer require
+d:
+  gyp libjs-inherits libjs-node-uuid libjs-underscore libpango1.0-0
+  libpangox-1.0-0 libssl-dev libssl-doc libuv1 libuv1-dev node-abbrev
+  node-ansi node-ansi-color-table node-archy node-async node-block-stream
+  node-combined-stream node-cookie-jar node-delayed-stream
+  node-forever-agent node-form-data node-fstream node-fstream-ignore
+  node-github-url-from-git node-glob node-graceful-fs node-gyp
+  node-inherits node-ini node-json-stringify-safe node-lockfile
+  node-lru-cache node-mime node-minimatch node-mkdirp node-mute-stream
+  node-node-uuid node-nopt node-normalize-package-data node-npmlog
+  node-once node-osenv node-qs node-read node-read-package-json
+  node-request node-retry node-rimraf node-semver node-sha node-sigmund
+  node-slide node-tar node-tunnel-agent node-underscore node-which
+  python-pkg-resources zlib1g-dev
+Use 'sudo apt autoremove' to remove them.
+The following additional packages will be installed:
+  fonts-lato heroku libruby2.3 rake ruby ruby-did-you-mean ruby-minitest
+  ruby-net-telnet ruby-power-assert ruby-test-unit ruby2.3
+  rubygems-integration
+Suggested packages:
+  ri ruby-dev bundler
+The following NEW packages will be installed:
+  fonts-lato heroku heroku-toolbelt libruby2.3 rake ruby ruby-did-you-mean
+  ruby-minitest ruby-net-telnet ruby-power-assert ruby-test-unit ruby2.3
+  rubygems-integration
+0 upgraded, 13 newly installed, 0 to remove and 0 not upgraded.
+Need to get 7710 kB of archives.
+After this operation, 26.8 MB of additional disk space will be used.
+```
+
+
+
+## 開啟共享資料夾功能
+
+
+參考 [vmware workstation 12 使用open-vm-tools配置ubuntu共享文件夹 - ok2222991 的个人空间 - 开源中国社区](http://my.oschina.net/u/1158620/blog/712253)
+
+
+```
+$ cd /etc/systemd/system
+$ sudo touch mnt.hgfs.service
+```
+
+
+```
+$ sudo vim mnt.hgfs.service
+[Unit]
+
+Description=Load VMware shared folders
+
+Requires=vmware-vmblock-fuse.service
+
+After=vmware-vmblock-fuse.service
+
+ConditionPathExists=.host:/
+
+ConditionVirtualization=vmware
+
+
+
+[Service]
+
+Type=oneshot
+
+RemainAfterExit=yes
+
+ExecStart=
+
+ExecStart=/usr/bin/vmhgfs-fuse -o allow_other -o auto_unmount .host:/ /mnt/hgfs
+
+
+
+
+
+[Install]
+
+WantedBy=multi-user.target
+```
+
+
+```
+$ sudo systemctl enable mnt.hgfs.service
+Created symlink from /etc/systemd/system/multi-user.target.wants/mnt.hgfs.service to /etc/systemd/system/mnt.hgfs.service.
+```
+
+
+```
+$ cd /mnt
+$ sudo mkdir hgfs
+$ sudo reboot
 ```
 
